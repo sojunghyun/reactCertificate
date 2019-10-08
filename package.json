@@ -1,0 +1,52 @@
+{
+  "name": "react_test",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "components": "^0.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.3",
+    "open-color": "^1.7.0",
+    "prop-types": "latest",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-router": "^5.1.2",
+    "react-scripts": "3.1.1",
+    "redux": "^4.0.4",
+    "styled-components": "^4.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.3.3-alpha.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "lib": "^4.0.5",
+    "react-hot-loader": "^4.12.14",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "webpack": "^4.41.0",
+    "webpack-dev-server": "^3.8.2"
+  }
+}
