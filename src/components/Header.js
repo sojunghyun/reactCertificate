@@ -4,17 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const mongoose = require('mongoose');
 
-const {Schema} = mongoose;
-const userSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-        unique: true,
-    }
-});
-module.exports = mongoose.model('Header', userSchema);
 // Link 사용하여 컴포넌트 누르는 메뉴 이벤트 형성
 const MenuItem = ({active, children, to}) => (
     <Link to={to} className="menu-item">
