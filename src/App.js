@@ -1,9 +1,8 @@
 //import React from 'react';
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {AuthContent, Input} from "./Auth";
 import Header from './components/Header';
+
 
 class App extends Component {
     state = {users: []}
