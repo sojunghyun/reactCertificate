@@ -7,11 +7,13 @@ const Wrapper = styled.div`
     & + & {
         margin-top: 1rem;
     }
+    
 `;
 
 const Label = styled.div`
     font-size: 1rem;
     margin-bottom: 0.25rem;
+    text-align: center;
 `;
 
 const Input = styled.input`
@@ -22,6 +24,7 @@ const Input = styled.input`
     font-size: 1.2rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    
 `;
 
 // rest 쪽에는 onChange, type, name, value, placeholder 등의 input 에서 사용 하는 값들을 넣어줄수 있다.

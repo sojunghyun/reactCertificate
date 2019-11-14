@@ -6,18 +6,26 @@ class Home extends Component {
       LoggingButton = () => {
         console.log("click");
   }
-    render() {
+      render() {
         return (
             <div className="button-item">
-                <AuthContent title="로그인">
-                <Input label="이메일" name="email" placeholder="이메일"/>
-                <Input label="비밀번호" name="password" placeholder="비밀번호" type="password"/>
-                </AuthContent>
                 <button onClick={this.LoggingButton}>submit</button>
             </div>
 
         );
     }
+    // render() {
+    //     return (
+    //         <div className="button-item">
+    //             <AuthContent title="로그인">
+    //             <Input label="이메일" name="email" placeholder="이메일"/>
+    //             <Input label="비밀번호" name="password" placeholder="비밀번호" type="password"/>
+    //             </AuthContent>
+    //             <button onClick={this.LoggingButton}>submit</button>
+    //         </div>
+    //
+    //     );
+    // }
 
 }
 class LoggingButton extends React.Component {

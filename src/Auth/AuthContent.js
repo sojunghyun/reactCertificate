@@ -9,21 +9,21 @@ const Title = styled.div`
     color: ${oc.gray[8]};
     margin-bottom: 1rem;
     text-align: center;
-    align:center;
+
 `;
 const Text = styled.div`
     font-size: 1rem;
     font-weight: 500;
     width: 500px;
     text-align: center;
-    align:center;
+
 `;
 
 // 너비, 그림자 설정
-//const ShadowedBox = styled.div`
+// const ShadowedBox = styled.div`
 //    width: 500px;
 //    ${shadow(2)}
-//`;
+// `;
 
 
 const AuthContent = ({title, children, ButtonTitle}) => (
