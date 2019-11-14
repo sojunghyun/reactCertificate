@@ -21,7 +21,7 @@ const Header = () => {
             <div className="menu">
                 <MenuItem to={'/'} >introduction</MenuItem>
                 <MenuItem to={'/Problem'}>Problem</MenuItem>
-                <MenuItem to={'/Mobile'}>comment</MenuItem>
+                <MenuItem to={'/comment'}>comment</MenuItem>
             </div>
         </div>
     );

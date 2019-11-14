@@ -13,6 +13,7 @@
     "nodemon": "^1.19.4",
     "open-color": "^1.7.0",
     "prop-types": "latest",
+    "proxy": "^1.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router": "^5.1.2",
@@ -21,10 +22,12 @@
     "styled-components": "^4.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "set NODE_ENV=production&&node ./server/index.js",
+    "development": "set NODE_ENV=development&&node ./server/index.js",
+    "build": "react-scripts start",
+    "server": "cd server && nodemon index.js",
+    "eject": "react-scripts eject",
+    "client": "cd src && npm start"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,5 +54,7 @@
     "react-hot-loader": "^4.12.14",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2"
-  }
+  },
+  "proxy": "http://localhost:7376/"
+
 }
