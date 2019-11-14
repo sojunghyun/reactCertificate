@@ -25,7 +25,7 @@
   "scripts": {
     "start": "set NODE_ENV=production&&node ./server/index.js",
     "development": "set NODE_ENV=development&&node ./server/index.js",
-    "build": "react-scripts start",
+    "build": "react-scripts build",
     "server": "cd server && nodemon index.js",
     "eject": "react-scripts eject",
     "client": "cd src && npm start"

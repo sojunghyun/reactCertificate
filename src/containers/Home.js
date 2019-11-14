@@ -1,19 +1,89 @@
 import React, { Component } from 'react';
 import BigText from '../components/BigText';
 import {AuthContent, Input} from "../Auth";
+import List from './List';
 
-class Home extends Component {
-      LoggingButton = () => {
-        console.log("click");
+const list = [
+  {
+  'num': 1,
+  'problem': 'test 문제1',
+  'answer': 'test 답1'
+},
+  {
+  'num': 2,
+  'problem': 'test 문제2',
+  'answer': 'test 답2'
   }
-      render() {
-        return (
-            <div className="button-item">
-                <button onClick={this.LoggingButton}>submit</button>
-            </div>
+]
+  
 
-        );
-    }
+const names = ['안녕하세요.', '방갑습니다.', '퇴근합시다.'];
+
+// const list = [
+//   {
+//   'num': 1,
+//   'problem': 'test 문제1',
+//   'answer': 'test 답1'
+//   },
+//   {
+//   'num': 2,
+//   'problem': 'test 문제2',
+//   'answer': 'test 답2'
+//   },
+//   {
+//   'num': 3,
+//   'problem': 'test 문제3',
+//   'answer': 'test 답3'
+//   }
+//   ]
+class Home extends Component {
+
+  state = {
+    number: 0
+  }
+
+  searchList(questionList, randNum){
+    console.log(questionList[randNum-1]['problem']);
+  }
+
+  handleIncrease = () => {
+    const { number } = this.state;
+    this.setState({
+      number: number + 1
+    });
+  }
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = { random: 1 };
+  }
+
+  handleClick() {
+    const min = 1;
+    const max = 2;
+    const rand = Math.floor(Math.random()*(max+1-min))+min;
+    this.setState({ random: rand });
+    this.searchList(list, rand)
+  }
+
+  render() {
+    return (
+      <div>
+ 
+        <button onClick={this.handleClick.bind(this)}>Click</button>
+        <div>The number is: {this.state.random}</div>
+                  <List 
+                  num={list.num}
+                  problem={list.problem}
+                  answer={list.answer}
+                  />
+        }
+
+      </div>
+
+    );
+  }
     // render() {
     //     return (
     //         <div className="button-item">
