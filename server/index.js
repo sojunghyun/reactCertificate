@@ -21,14 +21,11 @@ db.on("error", function(err){
 });
 // Other settings
 app.set("view engine", "ejs");
+// 소스코드 수정 후 npm run-script build > node ./index.js 시작
 console.log(path.resolve(__dirname,'../build'));
 app.use('/', express.static(path.resolve(__dirname,'../build')));
 
-/*  
-app.get('*', function (request, response){
-  response.send(path.resolve(__dirname, '../src', 'app.js'))
-})
-*/
+
 // Port setting
 const port = 7376;
 app.listen(7376, function(){
