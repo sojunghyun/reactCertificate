@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import BigText from '../components/BigText';
 import {AuthContent, Input} from "../Auth";
 import List from './List';
+import './Home.css'; 
+import Popup from "reactjs-popup";
 
 const list = [
-  {
-  'num': 1,
-  'problem': 'test 문제1',
-  'answer': 'test 답1'
-},
+  {  'num': 1,  'problem': 'test 문제1',  'answer': 'test 답1'  },
   {
   'num': 2,
   'problem': 'test 문제2',
@@ -63,17 +61,21 @@ class Home extends Component {
     this.searchList(list, rand)
   }
 
+  // onClickPopup(){
+  //   <Popup trigger={<button> Trigger</button>} position="right center">
+  //   <div>Popup content here !!</div>
+  //   </Popup>
+  // }
+
   render() {
     return (
-      <div className="button-item">
-        
+      <div className="text-item">      
         <div>The number is: {this.state.random}</div>
         <div>The Problem is: {this.state.result_problem}</div>
-        <div>The answer is: {this.state.result_answer}</div>
-        <div>The index is: {this.state.result_index}</div>
-
-        <button onClick={this.onChangeClick.bind(this)}>Click</button>
-
+        <button  onClick={this.onChangeClick.bind(this)}>NEXT</button>
+          <Popup trigger={<button> ANSWER</button>} position="right center">
+          <div>{this.state.result_answer}</div>
+          </Popup>
       </div>
 
     );

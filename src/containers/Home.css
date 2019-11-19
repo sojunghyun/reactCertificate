@@ -1,5 +1,12 @@
+.text-item {
+    margin-top: 3rem;
+    font-size: 30px;
+    text-align: center;
+}
+
 .button-item {
     margin-top: 3rem;
     font-size: 3rem;
+    left: 2rem;
     text-align: center;
 }
