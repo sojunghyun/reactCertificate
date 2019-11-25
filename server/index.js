@@ -3,8 +3,11 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+import Message from './messageModel';
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // DB setting
 mongoose.set('useNewUrlParser', true);    // 1
 mongoose.set('useFindAndModify', false);  // 1
@@ -21,13 +24,18 @@ db.on("error", function(err){
 });
 // Other settings
 app.set("view engine", "ejs");
+
 // 소스코드 수정 후 npm run-script build > node ./index.js 시작
 console.log(path.resolve(__dirname,'../build'));
 app.use('/', express.static(path.resolve(__dirname,'../build')));
-
 
 // Port setting
 const port = 7376;
 app.listen(7376, function(){
   console.log("server on! http://localhost:"+port);
+});
+
+app.post('/Problem', (req, res) => {
+  const doc = new Message({ message: req.body.message })
+  doc.save();
 });
