@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BigText from '../components/BigText';
 import {AuthContent, Input} from "../Auth";
-// import list from './list';
+// import H_Problem_list from './H_Problem_list';
 import './Home.css'; 
 import Popup from "reactjs-popup";
 
