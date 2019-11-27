@@ -36,12 +36,14 @@ app.use(bodyParser.urlencoded({extended:true})); // 3
 console.log(path.resolve(__dirname,'../build'));
 app.use('/', express.static(path.resolve(__dirname,'../build')));
 // app.use('/Problem', express.static(path.resolve(__dirname,'../build')));
+// app.use('/home', express.static(path.resolve(__dirname,'../build')));
 
 //Router
+//라우터 설정 에러 문제 problem url 이후의 router 설정이기 때문에 /Problem/ 으로 나타내야함.
 const todoRoutes = express.Router();
+app.use ('/Problem/', todoRoutes);
 
-
-todoRoutes.route ('/Problem'). get (function (req, res) { 
+todoRoutes.route ('/'). get (function (req, res) { 
   Todo.find (function (err, todos) { 
       if (err) { 
           console.log (err); 
@@ -50,13 +52,13 @@ todoRoutes.route ('/Problem'). get (function (req, res) {
       } 
   }); 
 });
-todoRoutes.route('/Problem/:id').get(function(req, res) {
+todoRoutes.route('/:id').get(function(req, res) {
   let id = req.params.id;
   Todo.findById(id, function(err, todo) {
       res.json(todo);
   });
 });
-todoRoutes.route('/Problem/add').post(function(req, res) {
+todoRoutes.route('/add').post(function(req, res) {
   let todo = new Todo(req.body);
   todo.save()
       .then(todo => {
@@ -66,7 +68,7 @@ todoRoutes.route('/Problem/add').post(function(req, res) {
           res.status(400).send('adding new todo failed');
       });
 });
-todoRoutes.route('/Problem/update/:id').post(function(req, res) {
+todoRoutes.route('/update/:id').post(function(req, res) {
   Todo.findById(req.params.id, function(err, todo) {
       if (!todo)
           res.status(404).send("data is not found");
@@ -84,7 +86,7 @@ todoRoutes.route('/Problem/update/:id').post(function(req, res) {
   });
 });
 
-app.use ('/Problem', todoRoutes);
+
 // app.post('/Problem', (req, res) => {
 //   var newMessage = new Message(req.body);
 //   newMessage.save((err, doc) => {
