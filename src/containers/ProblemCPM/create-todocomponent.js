@@ -15,7 +15,7 @@ export default class CreateTodo extends Component {
             todo_description: '',
             todo_responsible: '',
             todo_priority: '',
-            todo_completed: false
+            todo_createdAt: Date
         }
     }
 
@@ -41,15 +41,16 @@ export default class CreateTodo extends Component {
     e.preventDefault();
     
     console.log(`Form submitted:`);
-    console.log(`Todo Description: ${this.state.todo_description}`);
-    console.log(`Todo Responsible: ${this.state.todo_responsible}`);
-    console.log(`Todo Priority: ${this.state.todo_priority}`);
+    console.log(`commnet text: ${this.state.todo_description}`);
+    console.log(`commnet user: ${this.state.todo_responsible}`);
+    console.log(`commnet Priority: ${this.state.todo_priority}`);
+    console.log(`commnet createdDate: ${this.state.todo_createdAt}`);
  
     const newTodo = {
         todo_description: this.state.todo_description,
         todo_responsible: this.state.todo_responsible,
         todo_priority: this.state.todo_priority,
-        todo_completed: this.state.todo_completed
+        todo_createdAt: this.state.todo_createdAt
     };
     // axios.post('/Problem/create', {
     //     todo_description: '',
@@ -71,17 +72,18 @@ export default class CreateTodo extends Component {
         todo_description: '',
         todo_responsible: '',
         todo_priority: '',
-        todo_completed: false
+        todo_createdAt: ''
     })
+    this.props.history.push('/Problem/');
 }
 
     render() {
         return (
             <div style={{marginTop: 10}}>
-                <h3>Create New Todo</h3>
+                <h3>Create New Comment</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
-                        <label>Description: </label>
+                        <label>comment: </label>
                         <input  type="text"
                                 className="form-control"
                                 value={this.state.todo_description}
@@ -89,7 +91,7 @@ export default class CreateTodo extends Component {
                                 />
                     </div>
                     <div className="form-group">
-                        <label>Responsible: </label>
+                        <label>user: </label>
                         <input 
                                 type="text" 
                                 className="form-control"
@@ -132,6 +134,7 @@ export default class CreateTodo extends Component {
                             <label className="form-check-label">High</label>
                         </div>
                     </div>
+                    <div className="form-group">{this.state.todo_createdAt}</div>
 
                     <div className="form-group">
                         <input type="submit" value="Create Todo" className="btn btn-primary" />

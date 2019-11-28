@@ -35,8 +35,7 @@ app.use(bodyParser.urlencoded({extended:true})); // 3
 // 소스코드 수정 후 npm run-script build > node ./index.js 시작
 console.log(path.resolve(__dirname,'../build'));
 app.use('/', express.static(path.resolve(__dirname,'../build')));
-// app.use('/Problem', express.static(path.resolve(__dirname,'../build')));
-// app.use('/home', express.static(path.resolve(__dirname,'../build')));
+
 
 //Router
 //라우터 설정 에러 문제 problem url 이후의 router 설정이기 때문에 /Problem/ 으로 나타내야함.
@@ -62,10 +61,10 @@ todoRoutes.route('/add').post(function(req, res) {
   let todo = new Todo(req.body);
   todo.save()
       .then(todo => {
-          res.status(200).json({'todo': 'todo added successfully'});
+          res.status(200).json({'Comment': 'Comment added successfully'});
       })
       .catch(err => {
-          res.status(400).send('adding new todo failed');
+          res.status(400).send('adding new Comment failed');
       });
 });
 todoRoutes.route('/update/:id').post(function(req, res) {
@@ -76,12 +75,42 @@ todoRoutes.route('/update/:id').post(function(req, res) {
           todo.todo_description = req.body.todo_description;
           todo.todo_responsible = req.body.todo_responsible;
           todo.todo_priority = req.body.todo_priority;
-          todo.todo_completed = req.body.todo_completed;
+          todo.todo_createdAt = req.body.todo_createdAt;
           todo.save().then(todo => {
-              res.json('Todo updated!');
+              console.log('Comment update!');
+              res.json('Comment updated!');
           })
           .catch(err => {
               res.status(400).send("Update not possible");
+          });
+  });
+});
+// todoRoutes.route('/delete').post(function(req, res) {
+//   Todo.findById(req.params.id, function(err, todo) {
+//       todo._id = req.body._id;
+//       todo.remove().then(todo => {
+//           res.json('Comment delete!');
+//       })
+//       .catch(err => {
+//           res.status(400).send("Update not e");
+//       });
+//   });
+// });
+todoRoutes.route('/delete/:id').post(function(req, res) {
+  Todo.findById(req.params.id, function(err, todo) {
+      if (!todo)
+          res.status(404).send("data is not found");
+      else
+          todo.todo_description = req.body.todo_description;
+          todo.todo_responsible = req.body.todo_responsible;
+          todo.todo_priority = req.body.todo_priority;
+          todo.todo_createdAt = req.body.todo_createdAt;
+          todo.remove().then(todo => {
+              console.log('Comment delete!');
+              res.json('Comment delete!');
+          })
+          .catch(err => {
+              res.status(400).send("delete not possible");
           });
   });
 });
@@ -116,7 +145,8 @@ todoRoutes.route('/update/:id').post(function(req, res) {
 app.get("/", function(req, res){
   res.redirect("/Problem");
 });
-
+app.use('/Problem/', express.static(path.resolve(__dirname,'../build')));
+app.use('/home/', express.static(path.resolve(__dirname,'../build')));
 
 // // Problem - Index // 7
 // app.get("/Problem", function(req, res, next){

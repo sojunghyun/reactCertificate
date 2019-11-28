@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import CreateTodo from "./ProblemCPM/create-todocomponent";
 import EditTodo from "./ProblemCPM/edit-todocomponent";
-import TodosList from "./ProblemCPM/todos-listcomponent";
+import TodosList from "./ProblemCPM/listComponent";
 
 // var Problem = React.createClass({
 //   postMessage: function(value) {
@@ -74,14 +74,14 @@ class Problem extends Component {
       <Router>
       <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">       
-          <Link to="/Problem" className="navbar-brand">MERN-Stack Todo App</Link>
+          <Link to="/Problem" className="navbar-brand">댓글</Link>
           <div className="collpase navbar-collapse">
             <ul className="navbar-nav mr-auto">
-              <li className="navbar-item">
+              {/* <li className="navbar-item">
                 <Link to="/Problem/list" className="nav-link">Todos</Link>
-              </li>
+              </li> */}
               <li className="navbar-item">
-                <Link to="/Problem/create" className="nav-link">Create Todo</Link>
+                <Link to="/Problem/create" className="nav-link">댓글 달기</Link>
               </li>
             </ul>
           </div>
