@@ -6,7 +6,7 @@ var commentschema = new Schema({
     type: String,
   },
   username:{
-    typd: String,
+    type: String,
   },
   createdAt: {
     type: Date,
