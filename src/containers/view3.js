@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
-import createPost from "./new/create_post";
+
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
-
+import createPost from "./new/create_post";
+import viewcomment from "./view3";
 var style = {
   container:{
     padding: 20
@@ -26,21 +27,21 @@ class showCommentList extends Component {
   constructor(props) {
     super(props);
     this.state = {comments: []};
-    this.onClickNewbutton = this.onClickNewbutton.bind(this);
+    this.onClicknew = this.onClicknew.bind(this);
   }
 
   componentDidMount() {
     axios.get('http://localhost:7376/comment/')
         .then(response => {
             this.setState({ comments: response.data });
+            console.log("comment/ 링크 타고 간다.");
         })
         .catch(function (error){
             console.log(error);
         })
   }
-  onClickNewbutton() {
-      console.log('클릭');
-  }
+  // event.preventDefault()
+  // react { javascript 인식, render() 함수 작동 가능}
   todoList() {
     var data = this.state.comments;
     return data.map(function(current, i){
@@ -50,19 +51,20 @@ class showCommentList extends Component {
   }
 
 
-  // onClickPopup(){
-  //   <Popup trigger={<button> Trigger</button>} position="right center">
-  //   <div>Popup content here !!</div>
-  //   </Popup>
-  // }
+    onClicknew(){
+      axios.post('/comment/create')
+      .then(res => console.log('comment/create 이동했다.'));
+
+      this.props.history.push('/comment/');
+  }
 
   render() {
     var data = this.state.posts;
     return (
-      <div style={style.container}> 
+      <Router><div style={style.container}> 
           <h3>List</h3>
           <td> <Router>
-                <button onClick={this.onClickNewbutton.bind(this)}>new</button>
+                <button onClick={this.onClicknew.bind(this)}>new</button>
                 <Link to="/comment/create" >new</Link>
                 <Route path="/comment/create" component={createPost} />
                 </Router>
@@ -78,11 +80,11 @@ class showCommentList extends Component {
               </thead>
               <tbody>
                         { this.todoList() }
-                       
-                        
-                    </tbody>
+              </tbody>
           </table>   
       </div>
+      </Router>
+      
     );
   }
 }

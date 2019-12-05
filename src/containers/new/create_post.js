@@ -56,7 +56,7 @@ export default class createPost extends Component {
         username: '',
         createAt: ''
     })
-    this.props.history.push('/');
+    this.props.history.push('/comment/');
 }
 
     render() {

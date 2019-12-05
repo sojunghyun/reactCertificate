@@ -41,8 +41,18 @@ app.use('/', express.static(path.resolve(__dirname,'../build')));
 //라우터 설정 에러 문제 problem url 이후의 router 설정이기 때문에 /Problem/ 으로 나타내야함.
 const todoRoutes = express.Router();
 const comentRoutes = express.Router();
-app.use('/comment/', comentRoutes);
+//app.use('/comment/', comentRoutes);
 app.use('/Problem/', todoRoutes);
+
+var router  = express.Router();
+router.get("/comment/", function(req, res){
+  Commentschema.find({})                  // 1
+  .sort("-createdAt")            // 1
+  .exec(function(err, comments){    // 1
+    if(err) return res.json(err);
+    res.render("/comment/", {comments:comments});
+  });
+});
 
 todoRoutes.route ('/'). get (function (req, res) { 
   Todo.find (function (err, todos) { 
@@ -50,6 +60,7 @@ todoRoutes.route ('/'). get (function (req, res) {
           console.log (err); 
       } else { 
          res.json(todos) ; 
+         console.log("problem/ router");
          //res.redirect("/");
       } 
   }); 
@@ -117,6 +128,8 @@ comentRoutes.route ('/'). get (function (req, res) {
             console.log (err); 
         } else { 
            res.json(comments) ; 
+           console.log("commnet/ router");
+           //console.log(comments);
            //res.redirect("/");
         } 
     }); 
