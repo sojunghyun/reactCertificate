@@ -3,6 +3,10 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
 class Customer extends React.Component {
+    onSubmit(id) {
+        console.log('click event!  '+ id);
+        //this.props.history.push('/Problem/');
+    }
 render() {
 return (
 <TableRow>
@@ -12,6 +16,8 @@ return (
 <TableCell>{this.props.birthday}</TableCell>
 <TableCell>{this.props.gender}</TableCell>
 <TableCell>{this.props.job}</TableCell>
+<TableCell>{this.props.id}</TableCell>
+<button onClick={this.onSubmit(this.props.id)}>delete</button>
 </TableRow>
 )
 }

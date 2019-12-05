@@ -1,7 +1,7 @@
 import React from 'react';
 // react version 4 이기 때문에 react-router가 아니라 react-router-dom을 사용해야함 (버전마다 상이하게 다름)
 // 리액트 v3 정적라우팅 , v4 동적 라우팅
-import { Link } from 'react-router-dom';
+import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
 import './Header.css';
 
 
@@ -19,9 +19,9 @@ const Header = () => {
                 React
             </div>
             <div className="menu">
-                <MenuItem to={'/'} >introduction</MenuItem>
-                <MenuItem to={'/Problem'}>Problem</MenuItem>
-                <MenuItem to={'/comment'}>comment</MenuItem>
+                <MenuItem to={"/"} >introduction</MenuItem>
+                <MenuItem to={"/Problem"}>Problem</MenuItem>
+                <MenuItem to={"/comment"}>comment</MenuItem>
             </div>
         </div>
     );

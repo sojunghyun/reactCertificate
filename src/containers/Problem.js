@@ -5,9 +5,9 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import CreateTodo from "./ProblemCPM/create-todocomponent";
-import EditTodo from "./ProblemCPM/edit-todocomponent";
-import TodosList from "./ProblemCPM/listComponent";
+import CreateTodo from "./newProblemfile/create-todocomponent";
+import EditTodo from "./newProblemfile/edit-todocomponent";
+import TodosList from "./newProblemfile/listComponent";
 
 // var Problem = React.createClass({
 //   postMessage: function(value) {
@@ -74,7 +74,7 @@ class Problem extends Component {
       <Router>
       <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">       
-          <Link to="/Problem" className="navbar-brand">댓글</Link>
+          <Link to="/Problem/" className="navbar-brand">댓글</Link>
           <div className="collpase navbar-collapse">
             <ul className="navbar-nav mr-auto">
               {/* <li className="navbar-item">

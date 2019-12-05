@@ -15,7 +15,7 @@ export default class CreateTodo extends Component {
             todo_description: '',
             todo_responsible: '',
             todo_priority: '',
-            todo_createdAt: Date
+            todo_createdAt: Date.now,
         }
     }
 
@@ -34,6 +34,11 @@ export default class CreateTodo extends Component {
     onChangeTodoPriority(e) {
         this.setState({
             todo_priority: e.target.value
+        });
+    }
+    onChangecreateAt(e) {
+        this.setState({
+            todo_createdAt: e.target.value
         });
     }
 
@@ -134,8 +139,7 @@ export default class CreateTodo extends Component {
                             <label className="form-check-label">High</label>
                         </div>
                     </div>
-                    <div className="form-group">{this.state.todo_createdAt}</div>
-
+                    <div className="form-group" onChange={this.onChangecreateAt}>{this.state.todo_createdAt} </div>
                     <div className="form-group">
                         <input type="submit" value="Create Todo" className="btn btn-primary" />
                     </div>

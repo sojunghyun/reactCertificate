@@ -9,14 +9,14 @@ export default class EditTodo extends Component {
         this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
         this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
         this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
-        //this.onChangeTodoCompleted = this.onChangeTodoCompleted.bind(this);
+        this.onChangecreateAt = this.onChangecreateAt.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             todo_description: '',
             todo_responsible: '',
             todo_priority: '',
-            todo_createdAt: ''
+            todo_createdAt: Date.now
         }
     }
 
@@ -52,8 +52,7 @@ export default class EditTodo extends Component {
             todo_priority: e.target.value
         });
     }
-
-    onChangeTodoCompleted(e) {
+    onChangecreateAt(e) {
         this.setState({
             todo_createdAt: e.target.value
         });
@@ -68,7 +67,7 @@ export default class EditTodo extends Component {
             todo_createdAt: this.state.todo_createdAt
         };
         console.log(obj);
-        axios.post('/Problem/update/'+this.props.match.params.id, obj)
+        axios.post('/Problem/edit/'+this.props.match.params.id, obj)
             .then(res => console.log(res.data));
         
         this.props.history.push('/Problem/');
@@ -80,7 +79,7 @@ export default class EditTodo extends Component {
                 <h3 align="center">Update Todo</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
-                        <label>Description: </label>
+                        <label>user: </label>
                         <input  type="text"
                                 className="form-control"
                                 value={this.state.todo_description}
@@ -88,7 +87,7 @@ export default class EditTodo extends Component {
                                 />
                     </div>
                     <div className="form-group">
-                        <label>Responsible: </label>
+                        <label>Commnet: </label>
                         <input 
                                 type="text" 
                                 className="form-control"
@@ -131,6 +130,7 @@ export default class EditTodo extends Component {
                             <label className="form-check-label">High</label>
                         </div>
                     </div>
+                    <div className="form-group" onChange={this.onChangecreateAt}>{this.state.todo_createdAt} </div>
                     {/* <div className="form-check">
                         <input  className="form-check-input"
                                 id="completedCheckbox"

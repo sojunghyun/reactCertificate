@@ -69,13 +69,17 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="text-item">      
-        <div>The number is: {this.state.random}</div>
-        <div>The Problem is: {this.state.result_problem}</div>
-        <button  onClick={this.onChangeClick.bind(this)}>NEXT</button>
+      <div >      
+        <div className="text-item">The number is: {this.state.random}</div>
+        <div className="text-item">The Problem is: {this.state.result_problem}</div>
+        <div className="button-item">
+          <button  onClick={this.onChangeClick.bind(this)}>NEXT</button>
           <Popup trigger={<button> ANSWER</button>} position="right center">
           <div>{this.state.result_answer}</div>
           </Popup>
+        </div>
+    
+        
       </div>
 
     );
