@@ -42,7 +42,7 @@ app.use('/', express.static(path.resolve(__dirname,'../build')));
 const todoRoutes = express.Router();
 const comentRoutes = express.Router();
 app.use('/comment/', comentRoutes);
-// app.use('/Problem/', todoRoutes);
+app.use('/Problem/', todoRoutes);
 
 todoRoutes.route ('/'). get (function (req, res) { 
   Todo.find (function (err, todos) { 
@@ -130,8 +130,8 @@ comentRoutes.route('/:id').get(function(req, res) {
   });
 });
 comentRoutes.route('/add').post(function(req, res) {
-  let problem = new Commentschema(req.body);
-  problem.save()
+  let comment = new Commentschema(req.body);
+  comment.save()
       .then(problem => {
           res.status(200).json({'Comment': 'Comment added successfully'});
       })
@@ -139,8 +139,25 @@ comentRoutes.route('/add').post(function(req, res) {
           res.status(400).send('adding new Comment failed');
       });
 });
+comentRoutes.route('/delete/:id').post(function(req, res) {
+  Commentschema.findById(req.params.id, function(err, comment) {
+      if (!comment)
+          res.status(404).send("data is not found");
+      else
+            comment.title = req.body.title;
+            comment.username = req.body.username;
+            comment.todo_createdAt = req.body.todo_createdAt;
+            comment.remove().then(todo => {
+              console.log('Comment delete!');
+              res.redirect("/");
+          })
+          .catch(err => {
+              res.status(400).send("delete not possible");
+          });
+  });
+});
 
-app.use('/Problem/', todoRoutes);
+
 
 // app.post('/Problem', (req, res) => {
 //   var newMessage = new Message(req.body);
