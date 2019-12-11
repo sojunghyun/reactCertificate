@@ -4,11 +4,9 @@ import axios from 'axios';
 //import Dialog from 'react-bootstrap-dialog'
 import history from './history';
 import Moment from 'react-moment';
+import trashImage from'../icon-trash.png';
+import { ButtonToolbar, Button, Form, ormControl  } from 'react-bootstrap';
 
-function f1 (id){           //전역 함수
-    console.log(id); 
-    //this.props.history.push('/Problem/');
-  }
 
 const Todo = props => (
 
@@ -20,9 +18,35 @@ const Todo = props => (
     <td>
         <Link to={"/Problem/edit/"+props.todo._id}>Edit</Link>
     </td>
-    <td> <form method='POST' action={`/Problem/delete/${props.todo._id}` } >
-            <button onClick = {f1(props.todo._id)}>delete</button>
-            {/* </form><Route path="/Problem/" */}
+    <td> 
+        <form method='POST' action={`/Problem/delete/${props.todo._id}` } >
+            <Button variant="light" ><img src={trashImage} onClick = {() => {
+                var states = {props: []};
+                            console.log("Click img");
+                          axios.post('/Problem/delete/'+props.todo._id)
+                              .then(res => console.log(res))
+                              .catch(res => { console.log(res) } );
+
+                            //   axios.get('http://localhost:7376/Problem/', {
+                            //       params:{
+                            //         todo_description = props.todo.todo_description,
+                            //         todo_responsible = props.todo.todo_responsible,
+                            //         todo_priority = props.todo.todo_priority,
+                            //         todo_createdAt = props.todo.todo_createdAt
+                            //     }
+                            //   })
+                            //   .then(res => {
+                            //     console.log(res);
+                            //   })
+                            //   .catch(function (error){
+                            //       console.log(error);
+                            //   })
+             }} height='20px' width='20px'/></Button>
+            {/* <img src={trashImage} onClick = {() => {
+                var states = {props: []};
+                            console.log("Click img");
+   
+                      }} height='20px' width='20px'/> */}
          </form>
     </td>
 </tr>

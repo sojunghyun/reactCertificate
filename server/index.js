@@ -27,6 +27,17 @@ db.once("open", function(){
 db.on("error", function(err){
   console.log("DB ERROR : ", err);
 });
+
+// mongoose.connect(process.env.MongoDB, {
+//   useUnifiedTopology:true,
+//   useNewUrlParser:true,
+// })
+// .then(()=> console.log('DB connected!')
+// .catch(err=>{
+//   console.log("DB Connection Error:",err);
+// })); // 2
+
+
 // Other settings
 //app.set("view engine", "ejs");
 app.use(bodyParser.json()); // 2
@@ -41,18 +52,16 @@ app.use('/', express.static(path.resolve(__dirname,'../build')));
 //라우터 설정 에러 문제 problem url 이후의 router 설정이기 때문에 /Problem/ 으로 나타내야함.
 const todoRoutes = express.Router();
 const comentRoutes = express.Router();
-//app.use('/comment/', comentRoutes);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.use('/comment/', comentRoutes);
 app.use('/Problem/', todoRoutes);
 
-var router  = express.Router();
-router.get("/comment/", function(req, res){
-  Commentschema.find({})                  // 1
-  .sort("-createdAt")            // 1
-  .exec(function(err, comments){    // 1
-    if(err) return res.json(err);
-    res.render("/comment/", {comments:comments});
-  });
-});
 
 todoRoutes.route ('/'). get (function (req, res) { 
   Todo.find (function (err, todos) { 
@@ -121,16 +130,16 @@ todoRoutes.route('/delete/:id').post(function(req, res) {
 });
 
 
-
-comentRoutes.route ('/'). get (function (req, res) { 
+comentRoutes.route ('/').get (function (req, res) { 
   Commentschema.find (function (err, comments) { 
         if (err) { 
             console.log (err); 
         } else { 
            res.json(comments) ; 
-           console.log("commnet/ router");
+           console.log("/commnet/ router");
            //console.log(comments);
-           //res.redirect("/");
+           //res.push('/commnet/')
+           //res.require("/");
         } 
     }); 
   
@@ -159,16 +168,17 @@ comentRoutes.route('/delete/:id').post(function(req, res) {
       else
             comment.title = req.body.title;
             comment.username = req.body.username;
-            comment.todo_createdAt = req.body.todo_createdAt;
-            comment.remove().then(todo => {
+            comment.createdAt = req.body.createdAt;
+            comment.remove().then(comment => {
               console.log('Comment delete!');
-              res.redirect("/");
+              res.redirect("/comment/");
           })
           .catch(err => {
               res.status(400).send("delete not possible");
           });
   });
 });
+
 
 
 

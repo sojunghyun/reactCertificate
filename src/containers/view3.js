@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
-
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-
 import createPost from "./new/create_post";
-import viewcomment from "./view3";
+import view3 from "./view3";
+import trashImage from'./icon-trash.png';
+import { ButtonToolbar, Button, Form, ormControl  } from 'react-bootstrap';
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
 var style = {
   container:{
     padding: 20
   }
+}
+var buttonstyle = {
+  showimg:{
+    flex: 1,
+    size: 5
+  }
+}
+function onClickbutton(id) {
+    console.log(id);
 }
 
 const Comment = props => (
@@ -17,6 +29,35 @@ const Comment = props => (
   <td>{props.comment.title}</td>
   <td>{props.comment.username}</td>
   <td><Moment format="YYYY/MM/DD">{props.comment.createAt}</Moment></td>
+  <td> <form method='POST' action={`/comment/delete/${props.comment._id}` } >
+            {/* <button ><img src={'./icon-trash.svg'} ></img></button> */}
+            {/* <link rel="apple-touch-icon" href="icon-trash.png" /> */}
+            <button onClick = {() => {console.log("Click button")}}>
+            <img src={trashImage} height='20px' width='20px'/>
+            </button>
+            <Button variant="outline-dark"><img src={trashImage} height='20px' width='20px'/></Button>
+
+            <img src={trashImage} onClick = {() => {
+                var states = {props: []};
+                            console.log("Click img");
+                          axios.post('/comment/delete/'+props.comment._id)
+                              .then(res => console.log(res))
+                              .catch(res => { console.log(res) } );
+                          
+
+                          axios.get('http://localhost:7376/')
+                              .then(res => {
+                                    this.setState({ states: res.data });
+                                    console.log("comment/ 링크 다시 간다.");
+                                    
+                              })
+                              .catch(function (error){
+                                  console.log(error);
+                              });
+                      }} height='20px' width='20px'/>
+            {/* <button ><img src={trashImage} height='20px' width='20px'/></button> */}
+         </form>
+    </td>
 </tr>
  
 )
@@ -28,6 +69,7 @@ class showCommentList extends Component {
     super(props);
     this.state = {comments: []};
     this.onClicknew = this.onClicknew.bind(this);
+    this.routeChange = this.routeChange.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +91,10 @@ class showCommentList extends Component {
     })
 
   }
+  routeChange() {
+    let path = `/comment/`;
+    this.props.history.push(path);
+  }
 
 
     onClicknew(){
@@ -61,12 +107,13 @@ class showCommentList extends Component {
   render() {
     var data = this.state.posts;
     return (
-      <Router><div style={style.container}> 
+      <div style={style.container}> 
           <h3>List</h3>
           <td> <Router>
-                <button onClick={this.onClicknew.bind(this)}>new</button>
-                <Link to="/comment/create" >new</Link>
+                <button onClick={this.routeChange}>new</button>
+                <Link to="/comment/create" className="btn btn-primary" >new</Link>
                 <Route path="/comment/create" component={createPost} />
+                
                 </Router>
                 
           </td>
@@ -76,6 +123,7 @@ class showCommentList extends Component {
                       <th>title</th>
                       <th>username</th>
                       <th>createAt</th>
+                      <th>삭제</th>
                   </tr>
               </thead>
               <tbody>
@@ -83,7 +131,6 @@ class showCommentList extends Component {
               </tbody>
           </table>   
       </div>
-      </Router>
       
     );
   }

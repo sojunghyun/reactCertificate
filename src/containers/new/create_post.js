@@ -8,7 +8,6 @@ export default class createPost extends Component {
 
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChageUsername = this.onChageUsername.bind(this);
-        this.onChangecreateAt = this.onChangecreateAt.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
