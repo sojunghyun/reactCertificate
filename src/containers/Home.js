@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import BigText from '../components/BigText';
-import {AuthContent, Input} from "../Auth";
-// import list from './list';
 import './Home.css'; 
 import Popup from "reactjs-popup";
-
+import { ButtonToolbar, Button, Form, Modal  } from 'react-bootstrap';
+import { textAlign } from '@material-ui/system';
+ 
 const list = [
   {  'num': 1,  'problem': 'test 문제1',  'answer': 'test 답1'  },
   {
@@ -28,6 +27,17 @@ const list = [
   'answer': 'test 답5'
   }
 ]
+const btnStyle = {
+  color: "white",
+  background: "black",
+  padding: ".375rem .75rem",
+  border: "1px solid white",
+  borderRadius: ".25rem",
+  fontSize: "1rem",
+  lineHeight: 1.5,
+  textAlign:"center",
+  marginTop: 15
+};
 
 class Home extends Component {
 
@@ -49,8 +59,10 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.onChangeClick = this.onChangeClick.bind(this);
+     
     // 초기 값 설정 가능
-    // this.state = { random: 1 };
+    this.state = { showPopup: false, random: 1 }; 
+
   }
 
   onChangeClick() {
@@ -61,27 +73,29 @@ class Home extends Component {
     this.searchList(list, rand)
   }
 
-  // onClickPopup(){
-  //   <Popup trigger={<button> Trigger</button>} position="right center">
-  //   <div>Popup content here !!</div>
-  //   </Popup>
-  // }
-
   render() {
-    return (
-      <div >      
-        <div className="text-item">The number is: {this.state.random}</div>
-        <div className="text-item">The Problem is: {this.state.result_problem}</div>
-        <div className="button-item">
-          <button  onClick={this.onChangeClick.bind(this)}>NEXT</button>
-          <Popup trigger={<button> ANSWER</button>} position="right center">
-          <div>{this.state.result_answer}</div>
-          </Popup>
-        </div>
-    
-        
-      </div>
 
+    return (
+      <div >   
+        <div className="text-item">
+          <div>The number is: {this.state.random}</div>
+          <div>The Problem is: {this.state.result_problem}</div>
+        </div>        
+        <div className="button-style">
+          <button style={btnStyle} onClick={this.onChangeClick.bind(this) } >NEXT</button>
+          {/* <Popup trigger={<button> ANSWER</button>} position="right center">
+          <div>{this.state.result_answer}</div>
+          </Popup> */}
+          <Popup modal trigger={<button style={btnStyle} >ANSWER</button>} >
+            <div style={{ marginTop: 15, textAlign:"center"}}>ANSWER</div>
+            <div style={{ marginTop: 15, textAlign:"center"}} >{this.state.result_answer}</div>
+          </Popup>
+        </div> 
+
+
+
+      </div>
+  
     );
   }
 }

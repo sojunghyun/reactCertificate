@@ -9,7 +9,9 @@ import App from './App';
 import Home from './containers/Home';
 import view3 from './containers/view3';
 import Problem from './containers/Problem';
-import comment from './containers/comment';
+//import comment from './containers/comment';
+// import evaluation from './containers/evaluation-view';
+import evaluation from './containers/yearData/yearDateListview';
 import './index.css';
 
 ReactDOM.render(
@@ -19,7 +21,7 @@ ReactDOM.render(
     <Header />
       <Route exact path="/" component={Home} />
       <Route path="/Problem" component={Problem}/>
-      <Route path="/comment" component={view3}/>
+      <Route path="/comment" component={evaluation}/>
        </Route>
   </Router>,
   document.getElementById('root')

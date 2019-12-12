@@ -3,9 +3,8 @@ import axios from 'axios';
 import Moment from 'react-moment';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import createPost from "./new/create_post";
-import view3 from "./view3";
 import trashImage from'./icon-trash.png';
-import { ButtonToolbar, Button, Form, ormControl  } from 'react-bootstrap';
+// import { ButtonToolbar, Button, Form, ormControl  } from 'react-bootstrap';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -35,7 +34,7 @@ const Comment = props => (
             <button onClick = {() => {console.log("Click button")}}>
             <img src={trashImage} height='20px' width='20px'/>
             </button>
-            <Button variant="outline-dark"><img src={trashImage} height='20px' width='20px'/></Button>
+            {/* <Button variant="outline-dark"><img src={trashImage} height='20px' width='20px'/></Button> */}
 
             <img src={trashImage} onClick = {() => {
                 var states = {props: []};
@@ -45,15 +44,15 @@ const Comment = props => (
                               .catch(res => { console.log(res) } );
                           
 
-                          axios.get('http://localhost:7376/')
-                              .then(res => {
-                                    this.setState({ states: res.data });
-                                    console.log("comment/ 링크 다시 간다.");
+                          // axios.get('http://localhost:7376/')
+                          //     .then(res => {
+                          //           //parms { props: res.data }
+                          //           console.log("comment/ 링크 다시 간다.");
                                     
-                              })
-                              .catch(function (error){
-                                  console.log(error);
-                              });
+                          //     })
+                          //     .catch(function (error){
+                          //         console.log(error);
+                          //     });
                       }} height='20px' width='20px'/>
             {/* <button ><img src={trashImage} height='20px' width='20px'/></button> */}
          </form>

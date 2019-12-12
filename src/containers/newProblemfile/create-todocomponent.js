@@ -5,7 +5,6 @@ export default class CreateTodo extends Component {
 
     constructor(props) {
         super(props);
-
         this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
         this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
         this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
@@ -18,6 +17,7 @@ export default class CreateTodo extends Component {
             todo_createdAt: Date.now,
         }
     }
+
 
     onChangeTodoDescription(e) {
         this.setState({
@@ -46,6 +46,7 @@ export default class CreateTodo extends Component {
     e.preventDefault();
     
     console.log(`Form submitted:`);
+    console.log(`commnet index: ${this.state.todo_indexnumber}`);
     console.log(`commnet text: ${this.state.todo_description}`);
     console.log(`commnet user: ${this.state.todo_responsible}`);
     console.log(`commnet Priority: ${this.state.todo_priority}`);
@@ -88,7 +89,7 @@ export default class CreateTodo extends Component {
                 <h3>Create New Comment</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
-                        <label>comment: </label>
+                        <label>user: </label>
                         <input  type="text"
                                 className="form-control"
                                 value={this.state.todo_description}
@@ -96,7 +97,7 @@ export default class CreateTodo extends Component {
                                 />
                     </div>
                     <div className="form-group">
-                        <label>user: </label>
+                        <label>comment: </label>
                         <input 
                                 type="text" 
                                 className="form-control"

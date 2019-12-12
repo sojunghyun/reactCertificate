@@ -10,3 +10,34 @@
     left: 2rem; */
     text-align: center;
 }
+.button-style{
+    text-align: center;
+    color: Black;
+    background: white;
+    padding: .375rem .75rem ;
+    border: 1px solid white;
+}
+
+/* index.css */ 
+.modal {
+    width: 50%;
+    font-size: 12px;
+    text-align: center;
+  }
+  .modal > .header {
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .modal > .content {
+    width: 100%;
+    padding: 10px 5px;
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 30px;
+    text-align: center;
+  }
+

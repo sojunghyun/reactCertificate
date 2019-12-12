@@ -11,7 +11,8 @@ const bodyParser = require('body-parser');
 const os = require("os");
 
 var Todo     = require("../models/Todo");
-var Commentschema = require("../models/Comment_Schema");
+var Problem     = require("../models/Problem");
+//var Commentschema = require("../models/Comment_Schema");
 
 // DB setting
 mongoose.set('useNewUrlParser', true);    // 1
@@ -47,11 +48,17 @@ app.use(bodyParser.urlencoded({extended:true})); // 3
 console.log(path.resolve(__dirname,'../build'));
 app.use('/', express.static(path.resolve(__dirname,'../build')));
 
+app.get('/2017', function(req,res){
+  Problem.find(function(err, problems){
+      if(err) return res.status(500).send({error: 'database failure'});
+      res.json(problems);
+  })
+});
 
 //Router
 //라우터 설정 에러 문제 problem url 이후의 router 설정이기 때문에 /Problem/ 으로 나타내야함.
 const todoRoutes = express.Router();
-const comentRoutes = express.Router();
+const ProblemRoute = express.Router();
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin","*");
@@ -59,8 +66,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/comment/', comentRoutes);
+
 app.use('/Problem/', todoRoutes);
+app.use('/comment/', ProblemRoute);
 
 
 todoRoutes.route ('/'). get (function (req, res) { 
@@ -73,7 +81,6 @@ todoRoutes.route ('/'). get (function (req, res) {
          //res.redirect("/");
       } 
   }); 
-
 });
 todoRoutes.route('/:id').get(function(req, res) {
   let id = req.params.id;
@@ -128,54 +135,16 @@ todoRoutes.route('/delete/:id').post(function(req, res) {
           });
   });
 });
-
-
-comentRoutes.route ('/').get (function (req, res) { 
-  Commentschema.find (function (err, comments) { 
-        if (err) { 
-            console.log (err); 
-        } else { 
-           res.json(comments) ; 
-           console.log("/commnet/ router");
-           //console.log(comments);
-           //res.push('/commnet/')
-           //res.require("/");
-        } 
-    }); 
-  
-  });
-
-comentRoutes.route('/:id').get(function(req, res) {
+ProblemRoute.route ('/2017'). get (function (req, res) { 
+  Problem.find(function(err, problems){
+    if(err) return res.status(500).send({error: 'database failure'});
+    res.json(problems);
+})
+});
+ProblemRoute.route('/:id').get(function(req, res) {
   let id = req.params.id;
-  Commentschema.findById(id, function(err, comments) {
-      res.json(comments);
-  });
-});
-comentRoutes.route('/add').post(function(req, res) {
-  let comment = new Commentschema(req.body);
-  comment.save()
-      .then(problem => {
-          res.status(200).json({'Comment': 'Comment added successfully'});
-      })
-      .catch(err => {
-          res.status(400).send('adding new Comment failed');
-      });
-});
-comentRoutes.route('/delete/:id').post(function(req, res) {
-  Commentschema.findById(req.params.id, function(err, comment) {
-      if (!comment)
-          res.status(404).send("data is not found");
-      else
-            comment.title = req.body.title;
-            comment.username = req.body.username;
-            comment.createdAt = req.body.createdAt;
-            comment.remove().then(comment => {
-              console.log('Comment delete!');
-              res.redirect("/comment/");
-          })
-          .catch(err => {
-              res.status(400).send("delete not possible");
-          });
+  Problem.findById(id, function(err, problem) {
+      res.json(problem);
   });
 });
 
