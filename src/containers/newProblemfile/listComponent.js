@@ -4,6 +4,7 @@ import axios from 'axios';
 //import Dialog from 'react-bootstrap-dialog'
 import Moment from 'react-moment';
 import trashImage from'../icon-trash.png';
+import { Table } from 'react-bootstrap';
 
 const btnStyle = {
     color: "white",
@@ -86,7 +87,7 @@ export default class TodosList extends Component {
         return (
             <div>
                 <h3>List</h3>
-                <table className="table table-striped" style={{ marginTop: 15}} striped bordered hover size="small" >
+                <Table striped bordered hover size="sm">
                     <thead>
                         <tr>
                             <th width={'3%'}>index</th>
@@ -101,7 +102,7 @@ export default class TodosList extends Component {
                     <tbody >
                         { this.todoList() }                                  
                     </tbody>
-                </table>
+                </Table>
             </div>
         )
     }

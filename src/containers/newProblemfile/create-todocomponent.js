@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
+    },
+  }));
 
 export default class CreateTodo extends Component {
 
@@ -86,20 +98,25 @@ export default class CreateTodo extends Component {
     render() {
         return (
             <div style={{marginTop: 10}}>
-                <h3>Create New Comment</h3>
+                <h3>Create New Problem</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
-                        <label>user: </label>
-                        <input  type="text"
+                        <label>문제 : </label>
+                            <TextareaAutosize aria-label="minimum height" rows={3} placeholder="요청하시고자 하는 문제의 상세 내용을 적어주세요." 
                                 className="form-control"
                                 value={this.state.todo_description}
+                                onChange={this.onChangeTodoDescription} /> 
+                        {/* <input  type="text"
+                                className="form-control"
+                                rows={3} placeholder="Minimum 3 rows"
+                                value={this.state.todo_description}
                                 onChange={this.onChangeTodoDescription}
-                                />
+                                /> */}
+                      
                     </div>
                     <div className="form-group">
-                        <label>comment: </label>
-                        <input 
-                                type="text" 
+                        <label>정답: </label>
+                        <TextareaAutosize aria-label="minimum height" rows={1} placeholder="문제 정답" 
                                 className="form-control"
                                 value={this.state.todo_responsible}
                                 onChange={this.onChangeTodoResponsible}
@@ -111,7 +128,7 @@ export default class CreateTodo extends Component {
                                     type="radio" 
                                     name="priorityOptions" 
                                     id="priorityLow" 
-                                    value="Low"
+                                    value="쉬움"
                                     checked={this.state.todo_priority==='Low'} 
                                     onChange={this.onChangeTodoPriority}
                                     />
@@ -122,7 +139,7 @@ export default class CreateTodo extends Component {
                                     type="radio" 
                                     name="priorityOptions" 
                                     id="priorityMedium" 
-                                    value="Medium" 
+                                    value="보통" 
                                     checked={this.state.todo_priority==='Medium'} 
                                     onChange={this.onChangeTodoPriority}
                                     />
@@ -133,7 +150,7 @@ export default class CreateTodo extends Component {
                                     type="radio" 
                                     name="priorityOptions" 
                                     id="priorityHigh" 
-                                    value="High" 
+                                    value="어려움" 
                                     checked={this.state.todo_priority==='High'} 
                                     onChange={this.onChangeTodoPriority}
                                     />

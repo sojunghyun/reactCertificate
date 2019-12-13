@@ -24,14 +24,14 @@ class Problem extends Component {
       <Router>
       <div style={style.container}>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">       
-          <Link to="/Problem/" className="navbar-brand">댓글</Link>
+          <Link to="/Problem/" className="navbar-brand">문제요청리스트</Link>
           <div className="collpase navbar-collapse">
             <ul className="navbar-nav mr-auto">
               {/* <li className="navbar-item">
                 <Link to="/Problem/list" className="nav-link">Todos</Link>
               </li> */}
               <li className="navbar-item">
-                <Link to="/Problem/create" className="nav-link">댓글 달기</Link>
+                <Link to="/Problem/create" className="nav-link">요청</Link>
               </li>
             </ul>
           </div>

@@ -35,14 +35,14 @@ const btnStyle = {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
-  const Problem = props => [  <TableRow>  <TableCell component="th" scope="row">
+  const Problem = props => (  <TableRow>  <TableCell component="th" scope="row">
   {props.problem.problem_index}
   </TableCell>
 <TableCell align="left">{props.problem.problem_info}</TableCell>
 <TableCell align="left">{props.problem.problem_answer}</TableCell>
 <TableCell align="left">{props.problem.problem_year}</TableCell>
 </TableRow>
-]
+)
 
     
 
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
       borderRight: `1px solid ${theme.palette.divider}`,
     },
     paper: {
-      width: '100%',
+      width: '50%',
       overflowX: 'auto',
     },
     table: {
@@ -76,7 +76,7 @@ export default class problemList extends Component {
     
 
     componentDidMount() {
-        axios.get('http://localhost:7376/comment/2017')
+        axios.get('http://localhost:7376/comment/2018')
             .then(response => {
                 this.setState({ problems: response.data });
             })
@@ -110,19 +110,6 @@ export default class problemList extends Component {
                 <TableBody>
                         { this.todoList() }  
                 </TableBody>
-                {/* <TableBody>
-                  {rows.map(row => (
-                    <TableRow key={row.name}>
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody> */}
               </Table>
             </Paper>
           </div>

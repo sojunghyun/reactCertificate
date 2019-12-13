@@ -11,7 +11,8 @@ import view3 from './containers/view3';
 import Problem from './containers/Problem';
 //import comment from './containers/comment';
 // import evaluation from './containers/evaluation-view';
-import evaluation from './containers/yearData/yearDateListview';
+// import evaluation from './containers/yearData/yearDateListview';
+import evaluation from './containers/yearData/evaluation';
 import './index.css';
 
 ReactDOM.render(

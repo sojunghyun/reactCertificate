@@ -11,9 +11,9 @@ import Box from '@material-ui/core/Box';
 // import TableHead from '@material-ui/core/TableHead';
 // import TableRow from '@material-ui/core/TableRow';
 // import Paper from '@material-ui/core/Paper';
-
-import DataList from "./yearData/yearDateListview";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import yearlistview from "./yearData/yearDateListview";
+// import { Route, BrowserRouter, Switch as Router  } from "react-router-dom"
 // import React, { Component } from 'react';
 
 // const useStyles = makeStyles({
@@ -101,6 +101,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const onClickhandle = (num) => {
+  
+  // Link 사용하여 컴포넌트 누르는 메뉴 이벤트 형성
+  const Tab = ({active, children, to}) => (
+    <Link to={to} >
+            {children}
+    </Link>
+  )
+console.log(num,'.눌렸다.');
+
+
+};
+
 
 export default function VerticalTabs() {
 
@@ -111,7 +124,8 @@ export default function VerticalTabs() {
     setValue(newValue);
   };
 
-  
+
+    
   return (
     <div className={classes.root}>
       <Tabs
@@ -130,9 +144,10 @@ export default function VerticalTabs() {
         <Tab label="2022" {...a11yProps(5)} />
         <Tab label="2023" {...a11yProps(6)} />
       </Tabs>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0}  onClick={onClickhandle(2017)}  >
         
-            <div className={classes.root}>
+        
+            {/* <div className={classes.root}>
             <Paper className={classes.paper}>
               <Table className={classes.table} size="small" aria-label="a dense table">
               <TableHead>
@@ -156,8 +171,8 @@ export default function VerticalTabs() {
                   ))}
                 </TableBody>
               </Table>
-            </Paper>
-          </div>
+            </Paper> */}
+          {/* </div> */}
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
