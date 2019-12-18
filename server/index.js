@@ -1,8 +1,4 @@
-// import express from 'express';
-// import app from 'express';
-// import path from 'path';
-// import mongoose from 'mongoose';
-// import bodyParser from 'body-parser';
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -15,28 +11,20 @@ var Problem     = require("../models/Problem");
 //var Commentschema = require("../models/Comment_Schema");
 
 // DB setting
-mongoose.set('useNewUrlParser', true);    // 1
-mongoose.set('useFindAndModify', false);  // 1
-mongoose.set('useCreateIndex', true);     // 1
-mongoose.connect(process.env.MongoDB); // 2
-const db = mongoose.connection; // 3
-// 4
+mongoose.set('useNewUrlParser', true);    
+mongoose.set('useFindAndModify', false);  
+mongoose.set('useCreateIndex', true);     
+mongoose.connect(process.env.MongoDB); 
+const db = mongoose.connection;
+
 db.once("open", function(){
   console.log("DB connected");
 });
-// 5
+
 db.on("error", function(err){
   console.log("DB ERROR : ", err);
 });
 
-// mongoose.connect(process.env.MongoDB, {
-//   useUnifiedTopology:true,
-//   useNewUrlParser:true,
-// })
-// .then(()=> console.log('DB connected!')
-// .catch(err=>{
-//   console.log("DB Connection Error:",err);
-// })); // 2
 
 
 // Other settings
@@ -48,17 +36,11 @@ app.use(bodyParser.urlencoded({extended:true})); // 3
 console.log(path.resolve(__dirname,'../build'));
 app.use('/', express.static(path.resolve(__dirname,'../build')));
 
-app.get('/2017', function(req,res){
-  Problem.find(function(err, problems){
-      if(err) return res.status(500).send({error: 'database failure'});
-      res.json(problems);
-  })
-});
-
 //Router
 //라우터 설정 에러 문제 problem url 이후의 router 설정이기 때문에 /Problem/ 으로 나타내야함.
 const todoRoutes = express.Router();
 const ProblemRoute = express.Router();
+const ListRoute = express.Router();
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin","*");
@@ -69,8 +51,9 @@ app.use(function(req, res, next) {
 
 app.use('/Problem/', todoRoutes);
 app.use('/comment/', ProblemRoute);
+app.use('/view/', ListRoute);
 
-
+// req 요청 입장 들어보기,,,,
 todoRoutes.route ('/'). get (function (req, res) { 
   Todo.find (function (err, todos) { 
       if (err) { 
@@ -82,6 +65,7 @@ todoRoutes.route ('/'). get (function (req, res) {
       } 
   }); 
 });
+todoRoutes.use('/create', express.static(path.resolve(__dirname,'../build')));
 todoRoutes.route('/:id').get(function(req, res) {
   let id = req.params.id;
   Todo.findById(id, function(err, todo) {
@@ -147,8 +131,18 @@ ProblemRoute.route('/2018/:id').get(function(req, res) {
       res.json(problem);
   });
 });
-
-
+ListRoute.route ('/'). get (function (req, res) { 
+  Problem.find(function(err, problems){
+    if(err) return res.status(500).send({error: 'database failure'});
+    res.json(problems);
+})
+});
+ListRoute.route('/:id').get(function(req, res) {
+  let id = req.params.id;
+  Problem.findById(id, function(err, problem) {
+      res.json(problem);
+  });
+});
 
 
 // app.post('/Problem', (req, res) => {

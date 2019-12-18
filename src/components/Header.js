@@ -2,7 +2,7 @@ import React from 'react';
 // react version 4 이기 때문에 react-router가 아니라 react-router-dom을 사용해야함 (버전마다 상이하게 다름)
 // 리액트 v3 정적라우팅 , v4 동적 라우팅
 import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
-import './Header.css';
+import '../CSS/Header.css';
 
 
 // Link 사용하여 컴포넌트 누르는 메뉴 이벤트 형성

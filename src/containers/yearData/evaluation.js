@@ -33,7 +33,6 @@ class Problem extends Component {
         </nav>
         <br/>
         <Switch>        
-                    {/* <Route exact path="/comment/" component={TodosList} /> */}
                     <Route path="/comment/2018" component={yearDateListview_2018} /></Switch>
       </div>
     </Router>

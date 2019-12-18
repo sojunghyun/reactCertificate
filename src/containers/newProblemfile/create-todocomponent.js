@@ -97,7 +97,7 @@ export default class CreateTodo extends Component {
 
     render() {
         return (
-            <div style={{marginTop: 10}}>
+            <div style={{margin: 25}}>
                 <h3>Create New Problem</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
@@ -128,7 +128,7 @@ export default class CreateTodo extends Component {
                                     type="radio" 
                                     name="priorityOptions" 
                                     id="priorityLow" 
-                                    value="쉬움"
+                                    value="Low"
                                     checked={this.state.todo_priority==='Low'} 
                                     onChange={this.onChangeTodoPriority}
                                     />
@@ -139,7 +139,7 @@ export default class CreateTodo extends Component {
                                     type="radio" 
                                     name="priorityOptions" 
                                     id="priorityMedium" 
-                                    value="보통" 
+                                    value="Medium" 
                                     checked={this.state.todo_priority==='Medium'} 
                                     onChange={this.onChangeTodoPriority}
                                     />
@@ -150,7 +150,7 @@ export default class CreateTodo extends Component {
                                     type="radio" 
                                     name="priorityOptions" 
                                     id="priorityHigh" 
-                                    value="어려움" 
+                                    value="High" 
                                     checked={this.state.todo_priority==='High'} 
                                     onChange={this.onChangeTodoPriority}
                                     />

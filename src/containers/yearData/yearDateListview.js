@@ -23,32 +23,21 @@ const btnStyle = {
     lineHeight: 1.5
   };
 
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-  
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
 
-  const Problem = props => (  <TableRow>  <TableCell component="th" scope="row">
-  {props.problem.problem_index}
-  </TableCell>
-<TableCell align="left">{props.problem.problem_info}</TableCell>
-<TableCell align="left">{props.problem.problem_answer}</TableCell>
-<TableCell align="left">{props.problem.problem_year}</TableCell>
-</TableRow>
+
+  const Problem = props => ( 
+        <TableRow>  
+          <TableCell component="th" scope="row">          {props.problem.problem_index}          </TableCell>
+        <TableCell align="left">{props.problem.problem_info}</TableCell>
+        <TableCell align="left">{props.problem.problem_answer}</TableCell>
+        <TableCell align="left">{props.problem.problem_year}</TableCell>
+        </TableRow>
 )
 
     
-
-
 const useStyles = makeStyles(theme => ({
     root: {
+      padding: 10,
       flexGrow: 1,
       backgroundColor: theme.palette.background.paper,
       display: 'flex',
@@ -58,11 +47,11 @@ const useStyles = makeStyles(theme => ({
       borderRight: `1px solid ${theme.palette.divider}`,
     },
     paper: {
-      width: '50%',
+      width: '100%',
       overflowX: 'auto',
     },
     table: {
-      minWidth: 650,
+      minWidth: 500,
     },
   }));
 
@@ -96,23 +85,26 @@ export default class problemList extends Component {
 
     render() {
         return (
+          <div style={{ marginLeft: 25,  marginRight: 25, marginTop: 5}}> 
             <div className={useStyles.root}>
-            <Paper className={useStyles.paper}>
-              <Table className={useStyles.table} size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>index</TableCell>
-                    <TableCell align="left">problem_info</TableCell>
-                    <TableCell align="left">problem_answer</TableCell>
-                    <TableCell align="left">problem_year</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                        { this.todoList() }  
-                </TableBody>
-              </Table>
-            </Paper>
-          </div>
+              <Paper className={useStyles.paper}>
+                <Table className={useStyles.table} size="small" aria-label="a dense table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>#</TableCell>
+                      <TableCell align="left">문제</TableCell>
+                      <TableCell align="left">정답</TableCell>
+                      <TableCell align="left">년도</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                          { this.todoList() }  
+                  </TableBody>
+                </Table>
+              </Paper>
+            </div>
+        </div>
+           
         )
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-import createPost from "./new/create_post";
+import createPost from "./view3-createview/create_post";
 import trashImage from'./icon-trash.png';
 // import { ButtonToolbar, Button, Form, ormControl  } from 'react-bootstrap';
 

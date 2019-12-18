@@ -41,8 +41,6 @@ Todo.virtual("updatedTime")
   return getTime(this.updatedAt);
 });
 
-module.exports = mongoose.model('Todo', Todo);
-
 // functions
 function getDate(dateObj){
     if(dateObj instanceof Date)
@@ -57,3 +55,5 @@ function getDate(dateObj){
   function get2digits(num){
     return ("0" + num).slice(-2);
   }
+
+  module.exports = mongoose.model('Todo', Todo);

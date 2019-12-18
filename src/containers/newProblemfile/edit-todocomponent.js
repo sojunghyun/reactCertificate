@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default class EditTodo extends Component {
 
@@ -75,21 +77,20 @@ export default class EditTodo extends Component {
 
     render() {
         return (
-            <div>
-                <h3 align="center">Update Todo</h3>
+            <div style={{margin: 25}}>
+                <h3 align="center">Update Problem</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
-                        <label>user: </label>
-                        <input  type="text"
+                        <label>문제: </label>
+                        <TextareaAutosize aria-label="minimum height" rows={3} placeholder="요청하시고자 하는 문제의 상세 내용을 적어주세요." 
                                 className="form-control"
                                 value={this.state.todo_description}
                                 onChange={this.onChangeTodoDescription}
                                 />
                     </div>
                     <div className="form-group">
-                        <label>Commnet: </label>
-                        <input 
-                                type="text" 
+                        <label>정답: </label>
+                        <TextareaAutosize aria-label="minimum height" rows={1} placeholder="문제 정답" 
                                 className="form-control"
                                 value={this.state.todo_responsible}
                                 onChange={this.onChangeTodoResponsible}

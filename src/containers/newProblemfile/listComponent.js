@@ -62,10 +62,7 @@ export default class TodosList extends Component {
         
         this.props.history.push('/Problem/');
     }
-    onDeletebutton() {
-    console.log("버튼 눌렸다");
-    this.props.history.push('/Problem/');
-    }
+
     
     todoList() {
         var data = this.state.todos;
@@ -75,26 +72,18 @@ export default class TodosList extends Component {
 
     }
 
-    // todoList() {
-    //     var data = this.state.todos;
-    //     return data.map(function(currentTodo, i){
-    //         return <Todo todo={currentTodo} key={i}/> ;
-    //     })
-
-    // }
-
     render() {
         return (
             <div>
-                <h3>List</h3>
+                {/* <h3>List</h3> */}
                 <Table striped bordered hover size="sm">
                     <thead>
                         <tr>
-                            <th width={'3%'}>index</th>
-                            <th width={'45%'}>PROBLEM</th>
-                            <th>ANSWER</th>
-                            <th>Priority</th>
-                            <th width={'7%'}>createdAt</th>
+                            <th width={'3%'}>#</th>
+                            <th width={'45%'}>문제</th>
+                            <th>정답</th>
+                            <th>단계</th>
+                            <th width={'7%'}>Date</th>
                             <th width={'3%'}>Action</th>
                             <th width={'3%'}>delete</th>
                         </tr>
