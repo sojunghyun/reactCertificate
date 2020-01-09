@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 //import Dialog from 'react-bootstrap-dialog'
 import Moment from 'react-moment';
-import trashImage from'../icon-trash.png';
+import trashImage from '../../../src/img/icon-trash.png';
 import { Table } from 'react-bootstrap';
 
 const btnStyle = {
@@ -53,6 +53,7 @@ export default class TodosList extends Component {
             .catch(function (error){
                 console.log(error);
             })
+
     }
 
     onSubmit(id) {
@@ -63,7 +64,7 @@ export default class TodosList extends Component {
         this.props.history.push('/Problem/');
     }
 
-    
+    // 배열에서 map() 함수를 활용해 part id 배열을 만듬
     todoList() {
         var data = this.state.todos;
         return data.map(function(currentTodo, i){

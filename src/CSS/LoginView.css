@@ -1,0 +1,55 @@
+.out {
+    width: 100%;
+    text-align: center;
+    /* border: 1px solid black; */
+    padding: 20px;
+    margin: 15px;
+  }
+  .in {
+    display: inline-block;
+    width: auto;  
+    font-size: 20px;    
+    /* border: 1px solid skyblue; */
+    height: auto;
+  }
+
+.OpenPaperView {
+    background-color: darkslategray;
+    margin: 10;
+}
+
+.divClass {
+      position: absolute;
+      left: 0;
+      top: 10;
+      right: 0;
+      /* bottom: 0; */
+      width: 300px;
+      height: 300px;
+      margin: auto;
+}
+.imgView1 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top:0px;
+    margin: auto;
+}
+.imgView2 {
+    position: absolute;
+    /* bottom: 0; */
+    width: 50px;
+    height: 50px;
+    top:0px;
+    left:50px;
+    margin: auto;
+}
+.imgView3 {
+    position: absolute;
+    /* bottom: 0; */
+    width: 50px;
+    height: 50px;
+    top:0px;
+    left:100px;
+    margin: auto;
+}

@@ -85,14 +85,14 @@ export default class problemList extends Component {
 
     render() {
         return (
-          <div style={{ marginLeft: 25,  marginRight: 25, marginTop: 5}}> 
+          <div style={{ marginLeft: 15,  marginRight: 15, marginTop: 5}}> 
             <div className={useStyles.root}>
               <Paper className={useStyles.paper}>
                 <Table className={useStyles.table} size="small" aria-label="a dense table">
                   <TableHead>
                     <TableRow>
-                      <TableCell>#</TableCell>
-                      <TableCell align="left">문제</TableCell>
+                      <TableCell >#</TableCell>
+                      <TableCell align="left" >문제</TableCell>
                       <TableCell align="left">정답</TableCell>
                       <TableCell align="left">년도</TableCell>
                     </TableRow>

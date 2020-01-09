@@ -99,6 +99,7 @@ class Home extends Component {
   }
   
   onChangeClick() {
+    
     const min = 1;
     const max = 117;
     const rand = Math.floor(Math.random()*(max+1-min))+min;
@@ -114,29 +115,24 @@ class Home extends Component {
 
 
   render() {
-
-    return (
-      <div >   
-        <div className="text-item">
+    return (       
+        <div  style={{marginTop: 30 }}>
+          <div style={{margin: 10, textAlign: "center", width: "70%", margin: "auto" }}>  
+            
+            { this.onView_ProblemInfo()[this.state.random] }  
+            <div className="button-style">
+            <button style={btnStyle} onClick={this.onChangeClick.bind(this) } >NEXT</button>
+            <Popup modal trigger={<button style={btnStyle} >ANSWER</button>} >
+              <div style={{ marginTop: 15, textAlign:"center", fontSize: "1rem"}}>ANSWER</div>
+              <div style={{ margin: 30, textAlign:"center", fontSize: "1rem"}} >{ this.onView_ProblemAnswer()[this.state.random] } </div>
+            </Popup>
+           </div>              
+        </div>       
+        </div>
+                                                     
           
-          {/* <div>The number is: {this.state.random}</div>
-          <div>The Problem is: </div> */}
-          <div class="out">
-            <div class="in">
-              { this.onView_ProblemInfo()[this.state.random] }  
-              <div className="button-style">
-              <button style={btnStyle} onClick={this.onChangeClick.bind(this) } >NEXT</button>
-              <Popup modal trigger={<button style={btnStyle} >ANSWER</button>} >
-                <div style={{ marginTop: 15, textAlign:"center", fontSize: "1rem"}}>ANSWER</div>
-                <div style={{ margin: 30, textAlign:"center", fontSize: "1rem"}} >{ this.onView_ProblemAnswer()[this.state.random] } </div>
-              </Popup>
-             </div> 
-             
-        </div>                                                    
-          </div>
-        </div>        
+                
         
-      </div>
   
     );
   }

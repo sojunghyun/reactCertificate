@@ -2,40 +2,34 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
-export default class EditTodo extends Component {
+const useStyles = makeStyles(theme => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
+    },
+  }));
+
+export default class CreateTodo extends Component {
 
     constructor(props) {
         super(props);
-
         this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
         this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
         this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
-        this.onChangecreateAt = this.onChangecreateAt.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             todo_description: '',
             todo_responsible: '',
             todo_priority: '',
-            todo_createdAt: Date.now
+            todo_createdAt: Date.now,
         }
     }
 
-    componentDidMount() {
-        axios.get('/Problem/edit/'+this.props.match.params.id)
-            .then(response => {
-                this.setState({
-                    todo_description: response.data.todo_description,
-                    todo_responsible: response.data.todo_responsible,
-                    todo_priority: response.data.todo_priority,
-                    todo_createdAt: response.data.todo_createdAt
-                })   
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    }
 
     onChangeTodoDescription(e) {
         this.setState({
@@ -60,33 +54,65 @@ export default class EditTodo extends Component {
         });
     }
 
-    onSubmit(e) {
-        e.preventDefault();
-        const obj = {
-            todo_description: this.state.todo_description,
-            todo_responsible: this.state.todo_responsible,
-            todo_priority: this.state.todo_priority,
-            todo_createdAt: this.state.todo_createdAt
-        };
-        console.log(obj);
-        axios.post('/Problem/edit/'+this.props.match.params.id, obj)
-            .then(res => console.log(res.data));
-        
-        this.props.history.push('/Problem/');
-    }
+  onSubmit(e) {
+    e.preventDefault();
+    
+    console.log(`Form submitted:`);
+    console.log(`commnet index: ${this.state.todo_indexnumber}`);
+    console.log(`commnet text: ${this.state.todo_description}`);
+    console.log(`commnet user: ${this.state.todo_responsible}`);
+    console.log(`commnet Priority: ${this.state.todo_priority}`);
+    console.log(`commnet createdDate: ${this.state.todo_createdAt}`);
+ 
+    const newTodo = {
+        todo_description: this.state.todo_description,
+        todo_responsible: this.state.todo_responsible,
+        todo_priority: this.state.todo_priority,
+        todo_createdAt: this.state.todo_createdAt
+    };
+    // axios.post('/Problem/create', {
+    //     todo_description: '',
+    //     todo_responsible: '',
+    //     todo_priority: '',
+    //     todo_completed: false
+    // })
+    // .then(response => { 
+    //     console.log(response)
+    // })
+    // .catch(error => {
+    //     console.log(error.response)
+    // });
+
+    axios.post('/Problem/add', newTodo)
+        .then(res => console.log(res.data));
+
+    this.setState({
+        todo_description: '',
+        todo_responsible: '',
+        todo_priority: '',
+        todo_createdAt: ''
+    })
+    this.props.history.push('/Problem/');
+}
 
     render() {
         return (
             <div style={{margin: 25}}>
-                <h3 align="center">Update Problem</h3>
+                <h3>Create New Problem</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group"> 
-                        <label>문제: </label>
-                        <TextareaAutosize aria-label="minimum height" rows={3} placeholder="요청하시고자 하는 문제의 상세 내용을 적어주세요." 
+                        <label>문제 : </label>
+                            <TextareaAutosize aria-label="minimum height" rows={3} placeholder="요청하시고자 하는 문제의 상세 내용을 적어주세요." 
                                 className="form-control"
                                 value={this.state.todo_description}
+                                onChange={this.onChangeTodoDescription} /> 
+                        {/* <input  type="text"
+                                className="form-control"
+                                rows={3} placeholder="Minimum 3 rows"
+                                value={this.state.todo_description}
                                 onChange={this.onChangeTodoDescription}
-                                />
+                                /> */}
+                      
                     </div>
                     <div className="form-group">
                         <label>정답: </label>
@@ -132,24 +158,8 @@ export default class EditTodo extends Component {
                         </div>
                     </div>
                     <div className="form-group" onChange={this.onChangecreateAt}>{this.state.todo_createdAt} </div>
-                    {/* <div className="form-check">
-                        <input  className="form-check-input"
-                                id="completedCheckbox"
-                                type="checkbox"
-                                name="completedCheckbox"
-                                onChange={this.onChangeTodoCompleted}
-                                checked={this.state.todo_completed}
-                                value={this.state.todo_completed}
-                                />
-                        <label className="form-check-label" htmlFor="completedCheckbox">
-                            Completed
-                        </label>                        
-                    </div> */}
-
-                    <br/>
-
                     <div className="form-group">
-                        <input type="submit" value="Update Todo" className="btn btn-primary" />
+                        <input type="submit" value="new problem" className="btn btn-primary" />
                     </div>
                 </form>
             </div>

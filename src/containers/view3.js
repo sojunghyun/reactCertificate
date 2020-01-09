@@ -3,7 +3,7 @@ import axios from 'axios';
 import Moment from 'react-moment';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import createPost from "./view3-createview/create_post";
-import trashImage from'./icon-trash.png';
+import trashImage from'../../src/img/icon-trash.png';
 // import { ButtonToolbar, Button, Form, ormControl  } from 'react-bootstrap';
 
 import "bootstrap/dist/css/bootstrap.min.css";
