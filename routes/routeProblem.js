@@ -1,7 +1,8 @@
 
 const express = require("express");
-var Todo     = require("../models/Todo");
 const problemRoutes = express.Router();
+// 문제 요청 리스트 DB
+var Todo     = require("../models/Todo");
 
 // req 요청 입장 들어보기,,,,
 problemRoutes.route ('/'). get (function (req, res) { 

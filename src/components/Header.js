@@ -3,16 +3,10 @@ import React, { useState, useEffect } from 'react';
 // 리액트 v3 정적라우팅 , v4 동적 라우팅
 import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import '../CSS/Header.css';
-import Popup from "reactjs-popup";
 import { signIn } from './auth';
 import AuthRoute from './AuthRoute';
 import LoginForm from './LoginForm';
-import LoginForm2 from './loginAPI';
-
-
-
 import LogoutButton from './LogoutButton';
-import Profile from './Profile';
 import Problem from '../containers/Problem';
 import Homeview from '../containers/Home';
 import YearComment from '../containers/yearData/evaluation'
@@ -35,7 +29,7 @@ const Header = () => {
         <Router>
          <div>
             <div className="logo">
-                React              
+                REACT-INFO              
                 <div style={{ float: "right", marginRight: 20}}>{authenticated ? (
                 <LogoutButton logout={logout} />              
                 ) : (
@@ -43,11 +37,8 @@ const Header = () => {
                     <div style={{fontSize: 20}}>Login</div>
                 </Link>
                 )}</div>
-                
             </div>
-            
             <div className="menu">
-                
                 <Link to={"/"} className="menu-item">introduction</Link>
                 <Link to={"/Problem"} className="menu-item">Problem</Link>
                 <Link to={"/comment"} className="menu-item">comment</Link>
@@ -55,34 +46,21 @@ const Header = () => {
                 <MenuItem to={"/Problem"}>Problem</MenuItem>
                 <MenuItem to={"/comment"}>comment</MenuItem> */}
             </div>
-
             <Switch>
                 <Route exact path="/" component={Homeview} />
-               
-                {/* <Route
-                    path="/login"
-                    render={props => (
-                    <LoginForm authenticated={authenticated} login={login} {...props} />
-                    )}
-                /> */}
                 <Route
                     path="/login"
                     render={props => (
                     <LoginForm authenticated={authenticated} login={login} {...props} />
-                    )}
-                />
+                    )} />
                 <AuthRoute
                     authenticated={authenticated}
                     path="/Problem"
-                    render={props => <Problem user={user} {...props} /> }
-                >                  
-                </AuthRoute>
+                    render={props => <Problem user={user} {...props} /> }  />           
                 <AuthRoute
                     authenticated={authenticated}
                     path="/comment"
-                    render={props => <YearComment user={user} {...props} />}
-                />               
-                
+                    render={props => <YearComment user={user} {...props} />} />               
             </Switch>
         </div>
         </Router>

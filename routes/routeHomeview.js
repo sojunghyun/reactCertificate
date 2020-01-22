@@ -1,7 +1,7 @@
 
 const express = require("express");
-var Problem     = require("../models/Problem");
 const HomeListRoutes = express.Router();
+var Problem     = require("../models/Problem");
 
 HomeListRoutes.route ('/'). get (function (req, res) { 
     Problem.find(function(err, problems){

@@ -1,7 +1,7 @@
-
 const express = require("express");
-var Problem     = require("../models/Problem");
 const yearRoutes = express.Router();
+// 년도별 문제 리스트 DB
+var Problem     = require("../models/Problem");
 
 yearRoutes.route ('/2018'). get (function (req, res) { 
     Problem.find(function(err, problems){

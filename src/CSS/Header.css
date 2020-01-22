@@ -1,6 +1,6 @@
 .logo {
     height: 3.5rem;
-    background-color: #212529;
+    background-color: #000000;
     width: 100vw;
     line-height: 3.5rem;
     color: white;
@@ -10,7 +10,7 @@
 }
 
 .menu {
-    background-color: #343a40;
+    background-color: #2d6686;
     height: 3.5rem;
 }
 
@@ -27,10 +27,10 @@
 }
 
 .menu-item:hover {
-    background-color: #495057;
+    background-color: #2d6686;
 }
 
 .menu-item:active, .menu-item.active {
-    background-color: #1862ab;
+    background-color: #2d6686;
 }
 

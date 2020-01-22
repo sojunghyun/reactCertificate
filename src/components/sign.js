@@ -22,7 +22,7 @@ function LoginForm2() {
   const [user_password, setPW] = useState('');
   const [user_birthday, setBIRTH] = useState('');
 
-  const onSubmit = (history) => {
+  const onSubmit = () => {
     try {
       console.log(`Form submitted:`);
       console.log(`user_email: ${user_email}`);
@@ -36,10 +36,14 @@ function LoginForm2() {
         user_birthday: user_birthday,
         user_password: user_password
       };
-      axios.post('/login/add', newUser)
+      axios.post('/login/sign/add', newUser)
           .then(res => console.log(res.data))
 
       alert('회원가입 성공!');
+      setEmail('');
+      setPW('');
+      setName('');
+      setBIRTH('');
 
     } catch (e) {
       alert('회원가입 실패, 다시 시도해주세요.');

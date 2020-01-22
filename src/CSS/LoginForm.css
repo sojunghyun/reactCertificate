@@ -1,0 +1,26 @@
+.register-header {
+    height: 3.5rem;
+    /* background-color: #2D8659; */
+    background-color: #2d5186;    
+    /* width: 100vw; */
+    line-height: 3.5rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    /* height: 5rem;
+    background-color: #2D8659;
+    margin-bottom: 10px;
+    /* width: 100vw; */
+    /*줄간격*/
+    /* line-height: 5rem;  */
+    /* color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center; */
+  }
+
+.register-item {
+    margin-bottom: 10;
+    margin-left: 50;
+}
